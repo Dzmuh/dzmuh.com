@@ -1,0 +1,9 @@
+name: dzmuh-com-hugo
+static_sites:
+- build_command: rm -r ./public; hugo --destination ./public
+  environment_slug: hugo
+  github:
+    branch: master
+    deploy_on_push: true
+    repo: Dzmuh/dzmuh.com
+  name: sample-hugo
