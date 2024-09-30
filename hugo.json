@@ -6,6 +6,7 @@
     "DefaultContentLanguage": "pl",
     "theme": "dzmuh-com",
     "title": "Ilya Fralkou",
+    "subtitle": "Really Awesome Front-end Developer",
     "author": "Ilya Fralkou",
     "copyright": "Copyright © 2008–2024, Ilya Fralkou; all rights reserved.",
     "enableInlineShortcodes": true,
