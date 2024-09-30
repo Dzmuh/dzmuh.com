@@ -3,5 +3,9 @@
     "cSpell.words": [
         "dzmuh",
         "gohugo"
-    ]
+    ],
+    "[markdown]": {
+        "editor.quickSuggestions": true
+    },
+    "editor.formatOnPaste": true
 }

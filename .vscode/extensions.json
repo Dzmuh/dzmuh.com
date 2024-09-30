@@ -1,0 +1,22 @@
+{
+    "recommendations": [
+        "akmittal.hugofy",
+        "budparr.language-hugo-vscode",
+        "cssho.vscode-svgviewer",
+        "EditorConfig.editorconfig",
+        "eamodio.gitlens",
+        "grapecity.gc-excelviewer",
+        "donjayamanne.git-extension-pack",
+        "donjayamanne.githistory",
+        "jock.svg",
+        "ms-vscode.powershell",
+        "PKief.markdown-checkbox",
+        "redhat.vscode-yaml",
+        "shd101wyy.markdown-preview-enhanced",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-russian",
+        "streetsidesoftware.code-spell-checker-polish",
+        "shakram02.bash-beautify",
+        "yzhang.markdown-all-in-one"
+    ]
+}
