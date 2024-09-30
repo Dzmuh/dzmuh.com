@@ -1,0 +1,91 @@
+{
+    "$schema": "https://json.schemastore.org/hugo.json",
+    "baseURL": "/",
+    "relativeURLs": true,
+    "languageCode": "pl",
+    "DefaultContentLanguage": "pl",
+    "theme": "vitae",
+    "title": "Ilya Fralkou",
+    "author": "Ilya Fralkou",
+    "copyright": "Copyright © 2008–2024, Ilya Fralkou; all rights reserved.",
+    "enableInlineShortcodes": true,
+    "taxonomies": {
+        "category": "categories",
+        "tag": "tags"
+    },
+    "pagination": {
+        "disableAliases": false,
+        "pagerSize": 10,
+        "path": "page"
+    },
+    "languages": {
+        "pl": {
+            "languageCode": "pl",
+            "languageDirection": "ltr",
+            "languageName": "Polish",
+            "weight": 1,
+            "menu": {
+                "main":  [
+                    {
+                        "identifier": "home",
+                        "name": "Home",
+                        "pageRef": "/",
+                        "weight": 1
+                    },
+                    {
+                        "identifier": "portfolio",
+                        "name": "Portfolio",
+                        "pageRef": "portfolio",
+                        "weight": 10
+                    },
+                    {
+                        "identifier": "about",
+                        "name": "O mnie",
+                        "pageRef": "about",
+                        "weight": 20
+                    },
+                    {
+                        "identifier": "contact",
+                        "name": "Kontakt",
+                        "pageRef": "kontakt",
+                        "weight": 60
+                    }
+                ]
+            }
+        },
+        "en": {
+            "languageCode": "en",
+            "languageDirection": "ltr",
+            "languageName": "English",
+            "weight": 2,
+            "menu": {
+                "main": [
+                    {
+                        "identifier": "home",
+                        "name": "Home",
+                        "pageRef": "/",
+                        "weight": 1
+                    },
+                    {
+                        "identifier": "portfolio",
+                        "name": "Portfolio",
+                        "pageRef": "portfolio",
+                        "weight": 10
+                    },
+                    {
+                        "identifier": "about",
+                        "name": "About",
+                        "pageRef": "about",
+                        "weight": 10
+                    },
+                    {
+                        "identifier": "contact",
+                        "name": "Contact",
+                        "pageRef": "contact",
+                        "weight": 60
+                    }
+                ]
+            }
+        }
+    }
+}
