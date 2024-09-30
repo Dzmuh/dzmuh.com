@@ -1,0 +1,19 @@
+﻿[*]
+end_of_line = lf
+charset = utf-8-bom
+indent_style = space
+indent_size = 4
+
+[*.sh]
+end_of_line = lf
+charset = utf-8
+
+[*.cmd]
+end_of_line = crlf
+charset = utf-8
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{yaml,yml,toml}]
+indent_size = 2
