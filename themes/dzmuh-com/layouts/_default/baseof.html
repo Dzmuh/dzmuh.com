@@ -13,10 +13,12 @@
         {{ end }}
     </head>
     
-    {{ block "body_override" . }}<body>{{ end }}
+    {{- block "body_override" . }}<body>{{ end -}}
 
-        {{- block "main" . -}}
-        {{- end }}
+    {{- block "header" . }}{{ partial "page/header" . }}{{ end }}
+    {{- block "main" . -}}{{- end }}
+    {{- block "footer" . }}{{ partial "page/footer" . }}{{ end }}
+    {{- block "scripts" . }}{{ partial "page/scripts" . }}{{ end -}}
 
     </body>
 </html>
