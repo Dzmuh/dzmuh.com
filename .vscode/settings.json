@@ -5,7 +5,11 @@
         "gohugo"
     ],
     "[markdown]": {
-        "editor.quickSuggestions": true
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        }
     },
     "editor.formatOnPaste": true
 }
