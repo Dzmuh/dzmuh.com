@@ -40,10 +40,16 @@
                         "weight": 10
                     },
                     {
+                        "identifier": "blog",
+                        "name": "Blog",
+                        "pageRef": "blog",
+                        "weight": 20
+                    },
+                    {
                         "identifier": "about",
                         "name": "O mnie",
                         "pageRef": "about",
-                        "weight": 20
+                        "weight": 50
                     },
                     {
                         "identifier": "contact",
@@ -74,10 +80,16 @@
                         "weight": 10
                     },
                     {
+                        "identifier": "blog",
+                        "name": "Blog",
+                        "pageRef": "blog",
+                        "weight": 20
+                    },
+                    {
                         "identifier": "about",
                         "name": "About",
                         "pageRef": "about",
-                        "weight": 10
+                        "weight": 50
                     },
                     {
                         "identifier": "contact",
