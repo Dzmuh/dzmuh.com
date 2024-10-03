@@ -2,7 +2,7 @@
 <!--
     Подробнее о шаблонах для списков: https://gohugo.io/templates/lists/
     Подробнее о пагинации: https://gohugo.io/templates/pagination/
-    
+
     Определяю микроразметку в целом для страницы
     TODO: Проверить метаданные на соответствие
 
@@ -11,10 +11,10 @@
 {{- end -}}
 {{ define "main" }}
 <main>
-<h1>{{ .Title }}</h1>
+    <!-- TODO: -->
+    <h1>{{ .Title }}</h1>
 
-{{ .Content }}
-{{ partial "post_list.html" (dict "context" . "section" .Section)}}
+    {{ .Content }}
 
 </main>
 {{ end }}

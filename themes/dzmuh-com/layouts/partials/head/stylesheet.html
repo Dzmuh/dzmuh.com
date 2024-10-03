@@ -1,4 +1,13 @@
-{{ $options := (dict "outputStyle" "compressed" "enableSourceMap" (not hugo.IsProduction)) }}
-{{ $sass := resources.Get "css/bootstrap/bootstrap.scss" }}
-{{ $style := $sass | resources.ToCSS $options | resources.Fingerprint "sha512" }}
-<link rel="stylesheet" href="{{ $style.Permalink | relURL }}" integrity="{{ $style.Data.Integrity }}" />
+{{ with resources.Get "scss/pico/pico.classless.scss" }}
+    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/pico.classless.css" }}
+    {{ with . | toCSS $opts }}
+        {{ if hugo.IsDevelopment }}
+            <link rel="stylesheet" href="{{ .RelPermalink }}">
+        {{ else }}
+            {{ with . | minify | fingerprint }}
+                <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
