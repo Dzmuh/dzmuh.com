@@ -1,13 +1,13 @@
-<!--
-    На странице можно использовать переменные: https://gohugo.io/variables/page/
--->
 <!doctype html>
 <html lang="{{ $.Site.LanguageCode }}">
     <head>
-        {{ block "head" . }}
-            {{ partial "head/head" . }}
+        {{- /* 
+            На странице можно использовать переменные: https://gohugo.io/variables/page/
+        */}}
+        {{- block "head" . -}}
+            {{ partial "head/head" . -}}
+            {{ partial "head/favicons" . -}}
             {{ partial "head/stylesheet" . }}
-            {{ partial "head/favicons" . }}
             {{ partial "head/social" . }}
             {{ partial "head/analytics" . }}
         {{ end }}
@@ -15,10 +15,10 @@
     
     {{- block "body_override" . }}<body>{{ end -}}
 
-    {{- block "header" . }}{{ partial "page/header" . }}{{ end }}
-    {{- block "main" . -}}{{- end }}
-    {{- block "footer" . }}{{ partial "page/footer" . }}{{ end }}
-    {{- block "scripts" . }}{{ partial "page/scripts" . }}{{ end -}}
+        {{- block "header" . }}{{ partial "page/header" . }}{{ end }}
+        {{- block "main" . -}}{{- end }}
+        {{- block "footer" . }}{{ partial "page/footer" . }}{{ end }}
+        {{- block "scripts" . }}{{ partial "page/scripts" . }}{{ end -}}
 
     </body>
 </html>

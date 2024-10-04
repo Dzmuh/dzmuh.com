@@ -1,0 +1,14 @@
+{
+	"files": [
+		{
+			"path": "config/_default/params.json",
+			"bookmarks": [
+				{
+					"line": 1,
+					"column": 4,
+					"label": "Настройка CSS"
+				}
+			]
+		}
+	]
+}

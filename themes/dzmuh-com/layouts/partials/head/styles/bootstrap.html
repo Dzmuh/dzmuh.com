@@ -1,0 +1,56 @@
+{{ $version := .Site.Params.css.bootstrap.version | default "5" -}}
+{{- /* 
+    Полезные ссылки:
+    - https://gohugo.io/functions/css/sass/
+
+    Проверяем доступность CSS файла CDN
+*/ -}}
+{{ $cdnurl := printf "https://cdn.jsdelivr.net/npm/bootstrap@%s/dist/js/bootstrap.min.js" $version -}}
+{{ with resources.GetRemote $cdnurl -}}
+    {{ with .Err -}}
+        {{ errorf "Could not retrieve bootstrap script from CDN. Reason: %s." . -}}
+    {{ end -}}
+{{ else -}}
+    {{ errorf "Invalid Bootstrap version %s, could not retrieve this version from CDN." $version -}}
+{{ end -}}
+
+{{ $scssMain := "scss/bootstrap/bootstrap.scss" -}}
+{{ $css := resources.Get $scssMain | toCSS (dict "enableSourceMap" (not hugo.IsProduction)) -}}
+
+{{- if hugo.IsProduction -}}
+
+    {{- if .Site.Params.css.cdn -}}
+        <link rel="preload" href="{{ $cdnurl }}" as="style">
+    {{- else -}}
+        {{ $opts := dict 
+            "transpiler" "libsass" 
+            "targetPath" "css/bootstrap/bootstrap.css"
+        -}}
+        {{- $css = $css | toCSS $opts | minify | fingerprint -}}
+
+        {{ with $css -}}
+            <link rel="preload" href="{{ $css.RelPermalink }}" as="style">
+        {{ else -}}
+            {{ errorf "Resource not found: %s" $scssMain -}}
+        {{ end -}}
+    {{- end -}}
+
+{{- else -}}
+
+    {{- if .Site.Params.css.cdn -}}
+        <link rel="preload" href="{{ $cdnurl }}" as="style">
+    {{- end -}}
+        {{ $opts := dict 
+            "transpiler" "libsass" 
+            "targetPath" "css/bootstrap/bootstrap.css"
+            "enableSourceMap" (not hugo.IsProduction) 
+        -}}
+        {{- $css = $css | toCSS $opts -}}
+
+        {{ with $css -}}
+            <link href="{{ .RelPermalink }}" rel="stylesheet">
+        {{ else -}}
+            {{ errorf "Resource not found: %s" $scssMain -}}
+        {{ end -}}
+{{- end -}}
+

@@ -1,3 +1,5 @@
 {
-    "main_menu": "Menu główne"
+    "main_menu": "Menu główne",
+    "ui_pager_prev": "Wstecz",
+    "ui_pager_next": "Dalej"
 }

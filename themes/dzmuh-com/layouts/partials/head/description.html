@@ -1,0 +1,17 @@
+{{/*
+    Логика:
+        Если у страницы есть Description, то всегда используем его.
+        Если Description нет и страница главная, описание страницы берём из .Site.Params.description
+        Если Description нет это простая страница, пытаемся использовать Summary.
+        TODO: Summary может отсутствовать.
+*/}}
+{{- if .Description }}
+<meta name="description" content="{{ .Description | markdownify }}">
+
+{{- else if .IsHome }}
+<meta name="description" content="{{ .Site.Params.description | safeHTML }}">
+
+{{- else if .IsPage }}
+<meta name="description" content="{{ .Summary | plainify }}">
+
+{{- end }}

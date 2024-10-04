@@ -20,5 +20,6 @@
             "title": "content",
             "path": "[[workspace]]/content"
         }
-    ]
+    ],
+    "bookmarks.saveBookmarksInProject": true
 }
