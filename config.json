@@ -4,6 +4,7 @@
     "relativeURLs": true,
     "languageCode": "pl",
     "DefaultContentLanguage": "pl",
+    "defaultContentLanguageInSubdir": true,
     "theme": "dzmuh-com",
     "title": "Ilya Fralkou",
     "author": "Ilya Fralkou",
@@ -49,7 +50,7 @@
                     {
                         "identifier": "blog",
                         "name": "Blog",
-                        "pageRef": "blog",
+                        "pageRef": "posts",
                         "weight": 20
                     },
                     {
@@ -61,7 +62,7 @@
                     {
                         "identifier": "contact",
                         "name": "Kontakt",
-                        "pageRef": "kontakt",
+                        "pageRef": "contact",
                         "weight": 60
                     }
                 ]
@@ -94,7 +95,7 @@
                     {
                         "identifier": "blog",
                         "name": "Blog",
-                        "pageRef": "blog",
+                        "pageRef": "posts",
                         "weight": 20
                     },
                     {

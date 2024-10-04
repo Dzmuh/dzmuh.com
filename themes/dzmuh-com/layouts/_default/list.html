@@ -14,7 +14,16 @@
     <!-- TODO: -->
     <h1>{{ .Title }}</h1>
 
-    {{ .Content }}
+    <!-- TODO: -->
+    {{- if .Content }}
+		<section>
+			{{ .Content }}
+		</section>
+    {{- end }}
 
+    <!-- TODO: -->
+    {{- range .Paginator.Pages.ByPublishDate.Reverse -}}
+        {{- partial "page/list/page-summary" . -}}
+    {{- end -}}
 </main>
 {{ end }}
