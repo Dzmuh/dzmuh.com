@@ -3,10 +3,11 @@
         "picocss": {
             "use": true,
             "classless": true,
-            "version": ""
+            "fluid": false,
+            "version": "2"
         },
         "bootstrap": {
-            "use": true,
+            "use": false,
             "version": "5.3.3"
         },
         "cdn": false

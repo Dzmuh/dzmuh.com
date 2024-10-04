@@ -6,7 +6,7 @@
         */}}
         {{- block "head" . -}}
             {{ partial "head/head" . -}}
-            {{ partial "head/favicons" . -}}
+            {{ partialCached "head/favicons" . -}}
             {{ partial "head/stylesheet" . }}
             {{ partial "head/social" . }}
             {{ partial "head/analytics" . }}

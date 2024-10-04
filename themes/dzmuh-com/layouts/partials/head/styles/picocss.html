@@ -1,0 +1,78 @@
+{{/* 
+    Полезные ссылки:
+    - https://gohugo.io/functions/css/sass/
+    - https://picocss.com/docs/version-picker
+
+    Формируем ссылки на файлы в зависимости от конфигурации.
+    Если каких-то параметров нет, то инициализируем.
+    
+*/}}
+{{ $version    := .Site.Params.css.picocss.version | default "2" -}}
+{{ $scssMain   := "scss/pico/pico.scss" -}}
+{{ $targetPath := "css/pico/pico.css" -}}
+{{ $cdnurl     := printf "https://cdn.jsdelivr.net/npm/@picocss/pico@%s/css/pico.min.css" $version -}}
+{{ $fluid      := .Site.Params.css.picocss.fluid | default false -}}
+{{ $classless  := .Site.Params.css.picocss.classless | default false -}}
+
+{{ if eq $fluid true -}}
+    {{ $scssMain   = "scss/pico/pico.fluid.classless.scss" -}}
+    {{ $cdnurl     = printf "https://cdn.jsdelivr.net/npm/@picocss/pico@%s/css/pico.fluid.classless.min.css" $version -}}
+    {{ $targetPath = "css/pico/pico.fluid.classless.css" -}}
+{{ else if eq $classless true -}}
+    {{ $scssMain   = "scss/pico/pico.classless.scss" -}}
+    {{ $cdnurl     = printf "https://cdn.jsdelivr.net/npm/@picocss/pico@%s/css/pico.classless.min.css" $version -}}
+    {{ $targetPath = "css/pico/pico.classless.css" -}}
+{{ end -}}
+
+{{/* 
+    Проверяем доступность CSS файла CDN
+*/ -}}
+{{ with resources.GetRemote $cdnurl -}}
+    {{ with .Err -}}
+        {{ errorf "Could not retrieve PicoCSS script from CDN. Reason: %s." . -}}
+    {{ end -}}
+{{ else -}}
+    {{ errorf "Invalid PicoCSS version %s, could not retrieve this version from CDN." $version -}}
+{{ end -}}
+
+{{ $opts := dict 
+    "transpiler" "dartsass"
+    "targetPath" $targetPath
+    "enableSourceMap" (not hugo.IsProduction)
+-}}
+{{ $css := resources.Get $scssMain | toCSS $opts -}}
+
+{{- if hugo.IsProduction -}}
+
+    {{ if eq .Site.Params.css.cdn true }}
+        <link rel="preload" href="{{ $cdnurl }}" as="style">
+        {{/* */ -}}
+        <link href="{{ $cdnurl }}" rel="stylesheet">
+    {{- else -}}
+        {{ $css = $css | toCSS $opts | minify -}}
+        {{ with $css -}}
+            <link rel="preload" href="{{ $css.RelPermalink }}" as="style">
+            {{/* */ -}}
+            <link href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" rel="stylesheet">
+        {{ else -}}
+            {{ errorf "Resource not found: %s" $scssMain -}}
+        {{ end -}}
+
+    {{ end -}}
+{{ else -}}
+    {{ if eq .Site.Params.css.cdn true }}
+        <link rel="preload" href="{{ $cdnurl }}" as="style">
+        {{/* */ -}}
+        <link href="{{ $cdnurl }}" rel="stylesheet">
+    {{- else -}}
+        {{ $css = $css | toCSS $opts | fingerprint -}}
+        {{ with $css -}}
+            <link rel="preload" href="{{ $css.RelPermalink }}" as="style">
+            {{/* */ -}}
+            <link href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" rel="stylesheet">
+        {{ else -}}
+            {{ errorf "Resource not found: %s" $scssMain -}}
+        {{ end -}}
+
+    {{- end -}}
+{{- end -}}

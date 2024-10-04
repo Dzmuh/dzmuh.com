@@ -1,11 +1,13 @@
-{{ $version := .Site.Params.css.bootstrap.version | default "5" -}}
-{{- /* 
+{{ $version := .Site.Params.css.bootstrap.version | default "5.3.3" -}}
+{{ $integrity := .Site.Params.css.bootstrap.integrity | default "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" -}}
+{{/* 
     Полезные ссылки:
     - https://gohugo.io/functions/css/sass/
 
     Проверяем доступность CSS файла CDN
 */ -}}
-{{ $cdnurl := printf "https://cdn.jsdelivr.net/npm/bootstrap@%s/dist/js/bootstrap.min.js" $version -}}
+{{ $cdnurl := printf "https://cdn.jsdelivr.net/npm/bootstrap@%s/dist/css/bootstrap.min.css" $version -}}
+
 {{ with resources.GetRemote $cdnurl -}}
     {{ with .Err -}}
         {{ errorf "Could not retrieve bootstrap script from CDN. Reason: %s." . -}}
@@ -15,42 +17,44 @@
 {{ end -}}
 
 {{ $scssMain := "scss/bootstrap/bootstrap.scss" -}}
-{{ $css := resources.Get $scssMain | toCSS (dict "enableSourceMap" (not hugo.IsProduction)) -}}
+{{ $opts := dict 
+    "transpiler" "libsass"
+    "targetPath" "css/bootstrap/bootstrap.css"
+    "enableSourceMap" (not hugo.IsProduction) 
+-}}
+{{ $css := resources.Get $scssMain | toCSS $opts -}}
 
 {{- if hugo.IsProduction -}}
 
-    {{- if .Site.Params.css.cdn -}}
+    {{ if eq .Site.Params.css.cdn true }}
         <link rel="preload" href="{{ $cdnurl }}" as="style">
+        {{/* */ -}}
+        <link href="{{ $cdnurl }}" rel="stylesheet" integrity="{{ $integrity }}" crossorigin="anonymous">
     {{- else -}}
-        {{ $opts := dict 
-            "transpiler" "libsass" 
-            "targetPath" "css/bootstrap/bootstrap.css"
-        -}}
-        {{- $css = $css | toCSS $opts | minify | fingerprint -}}
-
+        {{ $css = $css | toCSS $opts | minify -}}
         {{ with $css -}}
             <link rel="preload" href="{{ $css.RelPermalink }}" as="style">
-        {{ else -}}
-            {{ errorf "Resource not found: %s" $scssMain -}}
-        {{ end -}}
-    {{- end -}}
-
-{{- else -}}
-
-    {{- if .Site.Params.css.cdn -}}
-        <link rel="preload" href="{{ $cdnurl }}" as="style">
-    {{- end -}}
-        {{ $opts := dict 
-            "transpiler" "libsass" 
-            "targetPath" "css/bootstrap/bootstrap.css"
-            "enableSourceMap" (not hugo.IsProduction) 
-        -}}
-        {{- $css = $css | toCSS $opts -}}
-
-        {{ with $css -}}
             <link href="{{ .RelPermalink }}" rel="stylesheet">
         {{ else -}}
             {{ errorf "Resource not found: %s" $scssMain -}}
         {{ end -}}
+
+    {{ end -}}
+{{ else -}}
+
+    {{ if eq .Site.Params.css.cdn true }}
+        <link rel="preload" href="{{ $cdnurl }}" as="style">
+        {{/* */ -}}
+        <link href="{{ $cdnurl }}" rel="stylesheet" integrity="{{ $integrity }}" crossorigin="anonymous">
+    {{- else -}}
+        {{ $css = $css | toCSS $opts | fingerprint -}}
+        {{ with $css -}}
+            <link rel="preload" href="{{ $css.RelPermalink }}" as="style">
+            <link href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" rel="stylesheet">
+        {{ else -}}
+            {{ errorf "Resource not found: %s" $scssMain -}}
+        {{ end -}}
+
+    {{- end -}}
 {{- end -}}
 
