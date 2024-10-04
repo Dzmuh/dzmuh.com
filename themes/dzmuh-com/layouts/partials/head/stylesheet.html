@@ -1,5 +1,5 @@
-{{ with resources.Get "scss/pico/pico.classless.scss" }}
-    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/pico.classless.css" }}
+{{ with resources.Get "scss/pico/pico.scss" }}
+    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/pico.css" }}
     {{ with . | toCSS $opts }}
         {{ if hugo.IsDevelopment }}
             <link rel="stylesheet" href="{{ .RelPermalink }}">

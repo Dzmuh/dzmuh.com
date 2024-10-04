@@ -10,6 +10,8 @@
 * [Dart Sass - GitHub](https://github.com/sass/dart-sass)
 * [Dart Sass i Hugo](https://gohugo.io/functions/css/sass/#dart-sass)
 
-## TODO
+Есть возможность использовать Bootstrap 5, см. секцию настроек стилей и CSS-фреймворка.
 
-- [ ] Ну не знаю, бутстрап нужно выкинуть.
+## Настройка стилей и CSS-фреймворка
+
+

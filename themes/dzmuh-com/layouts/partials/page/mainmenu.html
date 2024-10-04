@@ -1,35 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main Menu">
-    <div class="container">
-        <a class="navbar-brand" href="/{{ $.Site.Language }}/">{{ $.Site.Title }}</a>
-        <button
-            class="navbar-toggler collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#MainMenu"
-            aria-controls="navbarsExample07"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="navbar-collapse collapse" id="MainMenu">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {{- $currentPage := . -}}
-
-                    {{- range .Site.Menus.main -}}
-
-                        {{- if ne .Identifier "home" -}}
-                            <li><a href="{{ .URL | relLangURL }}" {{if  eq $currentPage.Section .Identifier }} class="nav-link active" {{else}} class="nav-link" {{end}}>
-                                {{- .Name -}}
-                            </a></li>
-                        {{- end -}}
-                
-                {{- end -}}
-
-                {{- partial "page/translations-dropdown.html" . -}}
-
-            </ul>
-        </div>
-    </div>
+<nav aria-label="{{- i18n "main_menu" -}}" id="MainMenu">
+    <ul>
+        <li><strong>{{ $.Site.Title }}</strong></li>
+    </ul>
+    <ul>
+    {{- $currentPage := . -}}
+        {{- range .Site.Menus.main -}}
+            {{- if ne .Identifier "home" -}}
+                <li>
+                    <a href="{{ .URL | relLangURL }}" {{if  eq $currentPage.Section .Identifier }} class="contrast" {{else}} class="contrast" {{end}}>
+                    {{- .Name -}}
+                    </a>
+                </li>
+            {{- end -}}
+    {{- end -}}
+    </ul>
+    <ul>
+        {{- partial "page/translations-dropdown.html" . -}}
+    </ul>
 </nav>

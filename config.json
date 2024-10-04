@@ -6,7 +6,6 @@
     "DefaultContentLanguage": "pl",
     "theme": "dzmuh-com",
     "title": "Ilya Fralkou",
-    "subtitle": "Really Awesome Front-end Developer",
     "author": "Ilya Fralkou",
     "copyright": "Copyright © 2008–2024, Ilya Fralkou; all rights reserved.",
     "enableInlineShortcodes": true,
@@ -19,12 +18,20 @@
         "pagerSize": 10,
         "path": "page"
     },
+    "params": {
+
+    },
     "languages": {
         "pl": {
             "languageCode": "pl",
             "languageDirection": "ltr",
             "languageName": "Polish",
             "weight": 1,
+            "title": "Ilya Fralkou",
+            "params": {
+                "description": "Example description",
+                "subtitle": "Really Awesome Front-end Developer"
+            },
             "menu": {
                 "main":  [
                     {
@@ -65,6 +72,11 @@
             "languageDirection": "ltr",
             "languageName": "English",
             "weight": 2,
+            "title": "Ilya Fralkou",
+            "params": {
+                "description": "Example description",
+                "subtitle": "Really Awesome Front-end Developer"
+            },
             "menu": {
                 "main": [
                     {

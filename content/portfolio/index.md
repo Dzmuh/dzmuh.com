@@ -1,5 +1,4 @@
 ---
-name: "portfolio"
 title: 'Portfolio'
 ---
 

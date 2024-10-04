@@ -1,3 +1,8 @@
 <header>
-    {{ partial "page/mainmenu" . }}
+    <hgroup>
+        <h1>{{ $.Site.Title }}</h1>
+    </hgroup>
+    <nav>
+        {{ partial "page/mainmenu" . }}
+    </nav>
 </header>

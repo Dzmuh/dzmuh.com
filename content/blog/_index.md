@@ -1,6 +1,5 @@
 ---
-name: "blog"
-title: 'Blog'
+title: "Blog"
 ---
 
 Blog.
