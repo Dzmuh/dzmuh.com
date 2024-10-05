@@ -2,6 +2,7 @@
 {{ $currentPage := . -}}
 <header>
 {{ if eq $bootstrap true -}}
+    {{/* Включение блока для Bootstrap */ -}}
     <nav class="py-2 bg-body-tertiary border-bottom" aria-label="{{- i18n "main_menu" -}}" id="MainMenu">
         <div class="container d-flex flex-wrap">
             {{ partial "page/mainmenu" . -}}
@@ -9,6 +10,7 @@
         </div>
     </nav>
 {{ else -}}
+    {{/* Включение блока для PicoCSS и собственного стиля */ -}}
     <h1>{{ site.Title }}</h1>
     <nav aria-label="{{- i18n "main_menu" -}}" id="MainMenu">
         {{ partial "page/mainmenu" . }}
@@ -16,18 +18,20 @@
     </nav>
 {{ end -}}
 {{ if eq $bootstrap true -}}
-<header class="py-3 mb-4 border-bottom">
-    <div class="container d-flex flex-wrap justify-content-center">
-        <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-4">Double header</span>
-        </a>
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-        </form>
+    {{/* Включение блока для Bootstrap */ -}}
+    <div class="py-3 mb-4 border-bottom">
+        <div class="container d-flex flex-wrap justify-content-center">
+            <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+
+                <img class="rounded" src="{{ "favicons/logo.svg" | relURL }}" alt="{{ site.Title }}" width="64" height="64">
+
+                <span class="fs-3">{{ site.Title }}</span>
+            </a>
+            {{/* TODO: Сюда нужно добавить ссылки на социальные сети */}}
+        </div>
     </div>
-</header>
 {{ else -}}
+    {{/* Включение блока для PicoCSS и собственного стиля */ -}}
 
 {{ end -}}
 </header>
