@@ -1,16 +1,22 @@
-{{- define "body_override" -}}
-<!--
+{{- /*
     Подробнее о шаблонах для списков: https://gohugo.io/templates/lists/
     Подробнее о пагинации: https://gohugo.io/templates/pagination/
-
+*/ -}}
+{{- define "body_override" -}}
+{{- /*
     Определяю микроразметку в целом для страницы
     TODO: Проверить метаданные на соответствие
-
--->
-<body class="list" itemscope itemtype="http://schema.org/CollectionPage" itemref="copyright translation">
+*/ -}}
+<body itemscope itemtype="http://schema.org/CollectionPage">
 {{- end -}}
 {{ define "main" }}
+    {{ $bootstrap := site.Params.css.bootstrap.use | default true -}}
+    {{ $currentPage := . -}}
+    {{ if eq $bootstrap true -}}
+<main class="container">
+    {{ else -}}
 <main>
+    {{ end -}}
     <!-- TODO: -->
     <h1>{{ .Title }}</h1>
 

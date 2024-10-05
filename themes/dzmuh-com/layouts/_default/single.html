@@ -1,8 +1,13 @@
 {{ define "main" }}
+    {{ $bootstrap := site.Params.css.bootstrap.use | default true -}}
+    {{ $currentPage := . -}}
+    {{ if eq $bootstrap true -}}
+<main class="container">
+    {{ else -}}
 <main>
-    <article>
+    {{ end -}}
         <h1>{{ .Title }}</h1>
-        {{ .Content }}
-    </article>
+        {{ .Content -}}
+
 </main>
 {{ end }}
