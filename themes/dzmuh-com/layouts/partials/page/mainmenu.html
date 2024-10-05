@@ -1,10 +1,10 @@
 <nav aria-label="{{- i18n "main_menu" -}}" id="MainMenu">
     <ul>
-        <li><strong>{{ $.Site.Title }}</strong></li>
+        <li><strong>{{ site.Title }}</strong></li>
     </ul>
     <ul>
     {{- $currentPage := . -}}
-        {{- range .Site.Menus.main -}}
+        {{- range site.Menus.main -}}
             {{- if ne .Identifier "home" -}}
                 <li>
                     <a href="{{ .URL | relLangURL }}" {{if  eq $currentPage.Section .Identifier }} class="contrast" {{else}} class="contrast" {{end}}>
@@ -12,7 +12,7 @@
                     </a>
                 </li>
             {{- end -}}
-    {{- end -}}
+        {{- end -}}
     </ul>
     <ul>
         {{- partial "page/translations-dropdown.html" . -}}

@@ -2,8 +2,8 @@
     Это универсальный файл который автоматически подключает необходимые файлы CSS 
     в соответствии с конфигурацией.
 */ -}}
-{{ if eq .Site.Params.css.bootstrap.use true -}}
+{{ if eq site.Params.css.bootstrap.use true -}}
     {{ partial "head/styles/bootstrap" . -}}
-{{ else if eq .Site.Params.css.picocss.use true -}}
+{{ else if eq site.Params.css.picocss.use true -}}
     {{ partial "head/styles/picocss" . -}}
 {{ end -}}

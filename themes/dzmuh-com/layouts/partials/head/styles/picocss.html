@@ -7,12 +7,12 @@
     Если каких-то параметров нет, то инициализируем.
     
 */}}
-{{ $version    := .Site.Params.css.picocss.version | default "2" -}}
+{{ $version    := site.Params.css.picocss.version | default "2" -}}
 {{ $scssMain   := "scss/pico/pico.scss" -}}
 {{ $targetPath := "css/pico/pico.css" -}}
 {{ $cdnurl     := printf "https://cdn.jsdelivr.net/npm/@picocss/pico@%s/css/pico.min.css" $version -}}
-{{ $fluid      := .Site.Params.css.picocss.fluid | default false -}}
-{{ $classless  := .Site.Params.css.picocss.classless | default false -}}
+{{ $fluid      := site.Params.css.picocss.fluid | default false -}}
+{{ $classless  := site.Params.css.picocss.classless | default false -}}
 
 {{ if eq $fluid true -}}
     {{ $scssMain   = "scss/pico/pico.fluid.classless.scss" -}}
@@ -44,7 +44,7 @@
 
 {{- if hugo.IsProduction -}}
 
-    {{ if eq .Site.Params.css.cdn true }}
+    {{ if eq site.Params.css.cdn true }}
         <link rel="preload" href="{{ $cdnurl }}" as="style">
         {{/* */ -}}
         <link href="{{ $cdnurl }}" rel="stylesheet">
@@ -60,7 +60,7 @@
 
     {{ end -}}
 {{ else -}}
-    {{ if eq .Site.Params.css.cdn true }}
+    {{ if eq site.Params.css.cdn true }}
         <link rel="preload" href="{{ $cdnurl }}" as="style">
         {{/* */ -}}
         <link href="{{ $cdnurl }}" rel="stylesheet">

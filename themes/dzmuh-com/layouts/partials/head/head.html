@@ -8,9 +8,9 @@
         - Если это простая страница, то берётся её заголовок и заголовок сайта.
     */}}
     {{- if .IsHome -}}
-        {{ .Site.Title | markdownify }} · {{ .Site.Params.subtitle | markdownify }}
+        {{ site.Title | markdownify }} · {{ site.Params.subtitle | markdownify }}
     {{- else -}}
-        {{ .Title | markdownify }} · {{ .Site.Title | markdownify }}
+        {{ .Title | markdownify }} · {{ site.Title | markdownify }}
     {{- end -}}
 </title>
 {{- partial "head/description" . }}

@@ -1,15 +1,18 @@
 {
     "css": {
         "picocss": {
-            "use": true,
+            "use": false,
             "classless": true,
             "fluid": false,
             "version": "2"
         },
         "bootstrap": {
-            "use": false,
+            "use": true,
             "version": "5.3.3"
         },
         "cdn": false
+    },
+    "theme_config": {
+        "show_description": true
     }
 }
