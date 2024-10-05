@@ -1,20 +1,49 @@
-<nav aria-label="{{- i18n "main_menu" -}}" id="MainMenu">
-    <ul>
-        <li><strong>{{ site.Title }}</strong></li>
-    </ul>
-    <ul>
-    {{- $currentPage := . -}}
+{{/*
+    Полезные ссылки:
+    - https://gohugo.io/methods/page/hasmenucurrent/
+    - https://gohugo.io/methods/page/ismenucurrent/
+*/}}
+{{ $bootstrap := site.Params.css.bootstrap.use | default true -}}
+{{ $currentPage := . -}}
+{{ $aria_current := "" -}}
+{{ $link_class   := "" -}}
+{{ if eq $bootstrap true -}}
+<ul class="nav me-auto">
+{{ else }}
+<ul>
+{{ end }}
+    {{ if eq $bootstrap true -}}
         {{- range site.Menus.main -}}
-            {{- if ne .Identifier "home" -}}
-                <li>
-                    <a href="{{ .URL | relLangURL }}" {{if  eq $currentPage.Section .Identifier }} class="contrast" {{else}} class="contrast" {{end}}>
+            {{- if $currentPage.IsMenuCurrent .Menu . -}}
+                {{ $aria_current = printf "aria-current=\"true\"" | safeHTMLAttr }}
+                {{ $link_class   = "link-danger" -}}
+            {{ else if $currentPage.HasMenuCurrent .Menu . -}}
+                {{ $aria_current = printf "aria-current=\"page\"" | safeHTMLAttr }}
+                {{ $link_class   = "link-secondary" -}}
+            {{ else -}}
+                {{ $aria_current = printf "" | safeHTMLAttr -}}
+                {{ $link_class   = "link-dark" -}}
+            {{ end -}}
+            <li class="nav-item">
+                <a href="{{ .URL | relLangURL }}" {{ $aria_current }} class="nav-link px-2 {{ $link_class }}">
                     {{- .Name -}}
-                    </a>
-                </li>
-            {{- end -}}
-        {{- end -}}
-    </ul>
-    <ul>
-        {{- partial "page/translations-dropdown.html" . -}}
-    </ul>
-</nav>
+                </a>
+            </li>
+        {{ end -}}
+    {{ else -}}
+        {{- range site.Menus.main -}}
+            {{- if $currentPage.IsMenuCurrent .Menu . -}}
+                {{ $aria_current = printf "aria-current=\"true\"" | safeHTMLAttr }}
+            {{ else if $currentPage.HasMenuCurrent .Menu . -}}
+                {{ $aria_current = printf "aria-current=\"page\"" | safeHTMLAttr }}
+            {{ else -}}
+                {{ $aria_current = printf "" | safeHTMLAttr -}}
+            {{ end -}}
+            <li>
+                <a href="{{ .URL | relLangURL }}" {{ $aria_current }}>
+                    {{- .Name -}}
+                </a>
+            </li>
+        {{ end -}}
+    {{ end -}}
+</ul>

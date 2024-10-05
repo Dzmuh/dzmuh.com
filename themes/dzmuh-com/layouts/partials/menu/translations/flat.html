@@ -1,0 +1,28 @@
+{{ $bootstrap := site.Params.css.bootstrap.use | default true -}}
+{{ $currentPage := . -}}
+{{ if eq $bootstrap true -}}
+<ul class="nav nav-pills">
+{{ else -}}
+<ul>
+{{ end -}}
+{{ $link_class   := "" -}}
+{{- range site.Home.AllTranslations -}}
+    {{ if eq $bootstrap true -}}
+        {{ if eq .Language.LanguageCode $currentPage.Language.LanguageCode -}}
+            {{ $link_class = "active" -}}
+        {{ else -}}
+            {{ $link_class = "" -}}
+        {{ end -}}
+    <li class="nav-item">
+        <a href="{{ .Permalink }}" class="nav-link {{ $link_class }}">
+            {{- .Language.LanguageName -}}
+        </a>
+    {{ else -}}
+    <li>
+        <a href="{{ .Permalink }}">
+            {{- .Language.LanguageName -}}
+        </a>
+    {{- end -}}
+    </li>
+{{- end -}}
+</ul>

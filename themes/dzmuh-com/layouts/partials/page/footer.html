@@ -1,13 +1,11 @@
 {{ $bootstrap := site.Params.css.bootstrap.use | default true -}}
-{{- $currentPage := . -}}
+{{ $currentPage := . -}}
 {{ if eq $bootstrap true -}}
 <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 {{ else -}}
 <footer>
 {{ end -}}
-    
-    
     <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
 
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
@@ -21,6 +19,7 @@
         <ul class="nav">
     {{ else -}}
     <nav>
+        <ul>
     {{ end -}}
         {{/* TODO: Это меню в низу страницы. Интересно, что будет если оно переполнится. */}}
             {{ if eq $bootstrap true -}}
@@ -30,10 +29,10 @@
                         {{ $link_class   = "link-danger" -}}
                     {{ else if $currentPage.HasMenuCurrent .Menu . -}}
                         {{ $aria_current = printf "aria-current=\"page\"" | safeHTMLAttr }}
-                        {{ $link_class   = "link-dark" -}}
+                        {{ $link_class   = "link-secondary" -}}
                     {{ else -}}
                         {{ $aria_current = printf "" | safeHTMLAttr -}}
-                        {{ $link_class   = "link-secondary" -}}
+                        {{ $link_class   = "link-dark" -}}
                     {{ end -}}
                     <li class="nav-item">
                         <a href="{{ .URL | relLangURL }}" {{ $aria_current }} class="nav-link px-2 {{ $link_class }}">
@@ -43,11 +42,18 @@
                 {{ end -}}
             {{ else -}}
                 {{- range site.Menus.main -}}
-                <li>
-                    <a href="{{ .URL | relLangURL }}" {{ if eq $currentPage.Section .Identifier }} class="contrast" {{else}} class="contrast" {{end}}>
-                    {{- .Name -}}
-                    </a>
-                </li>
+                    {{- if $currentPage.IsMenuCurrent .Menu . -}}
+                        {{ $aria_current = printf "aria-current=\"true\"" | safeHTMLAttr }}
+                    {{ else if $currentPage.HasMenuCurrent .Menu . -}}
+                        {{ $aria_current = printf "aria-current=\"page\"" | safeHTMLAttr }}
+                    {{ else -}}
+                        {{ $aria_current = printf "" | safeHTMLAttr -}}
+                    {{ end -}}
+                    <li>
+                        <a href="{{ .URL | relLangURL }}" {{ $aria_current }}>
+                            {{- .Name -}}
+                        </a>
+                    </li>
                 {{ end -}}
             {{ end -}}
         </ul>
