@@ -5,18 +5,7 @@
 В решение включено два CSS-фреймворка, это PicoCSS и Bootstrap 5.
 Настройка используемого CSS-фреймворка осуществляется через настройки, см. раздел [Настройка стилей и CSS-фреймворка](#настройка-стилей-и-css-фреймворка).
 
-### Особенности использования PicoCSS
-
-Для его компиляции необходима расширенная версия Hugo и установленный в системе Dart Sass.
-
-* [pico: Minimal CSS Framework for semantic HTML](https://picocss.com/)
-  * [picocss/pico - GitHub](https://github.com/picocss/pico)
-* [Dart Sass - GitHub](https://github.com/sass/dart-sass)
-* [Dart Sass i Hugo](https://gohugo.io/functions/css/sass/#dart-sass)
-
-Есть возможность использовать Bootstrap 5, см. .
-
-## Настройка стилей и CSS-фреймворка
+### Настройка стилей и CSS-фреймворка
 
 Настройка используемого CSS-фреймворка осуществляется через файл `params.json` и секцию `"css"`.
 
@@ -42,6 +31,17 @@
 PicoCSS должен быть активирован явно, через `picocss.use = true` и `bootstrap.use = false`.
 
 `picocss.fluid = true` имеет приоритет над `picocss.classless = true`.
+
+### Особенности использования PicoCSS
+
+Для его компиляции необходима расширенная версия Hugo и установленный в системе Dart Sass.
+
+* [pico: Minimal CSS Framework for semantic HTML](https://picocss.com/)
+  * [picocss/pico - GitHub](https://github.com/picocss/pico)
+* [Dart Sass - GitHub](https://github.com/sass/dart-sass)
+* [Dart Sass i Hugo](https://gohugo.io/functions/css/sass/#dart-sass)
+
+Есть возможность использовать Bootstrap 5, см. .
 
 ## Настройка Favicons
 

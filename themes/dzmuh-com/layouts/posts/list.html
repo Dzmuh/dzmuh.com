@@ -1,0 +1,53 @@
+{{- /*
+    Оформление страницы со списком статей в блоге.
+
+    Подробнее о шаблонах для списков: https://gohugo.io/templates/lists/
+    Подробнее о пагинации: https://gohugo.io/templates/pagination/
+*/ -}}
+{{- define "body_override" -}}
+{{- /*
+    Определяю микроразметку в целом для страницы
+    TODO: Проверить метаданные на соответствие
+*/ -}}
+<body itemscope itemtype="http://schema.org/CollectionPage">
+{{- end -}}
+{{ define "main" }}
+    {{ $bootstrap := site.Params.css.bootstrap.use | default true -}}
+    {{ $currentPage := . -}}
+    {{ if eq $bootstrap true -}}
+<main class="container">
+    {{ else -}}
+<main>
+    {{ end -}}
+    {{- partial "posts/section-featured" -}}
+    <!-- Articles List -->
+    <div class="row g-5">
+        <div class="col-md-8">
+            <header>
+                <!-- TODO: -->
+                <h1 class="pb-4 mb-4 fst-italic border-bottom">
+                    {{ .Title }}
+                </h1>
+                <!-- TODO: -->
+                {{- if .Content }}
+                    <section>
+                        {{- .Content -}}
+                    </section>
+                {{- end }}
+            </header>
+
+            <!-- TODO: -->
+            {{- range .Paginator.Pages.ByPublishDate.Reverse -}}
+                {{- partial "posts/lists/post-summary" . -}}
+            {{- end -}}
+
+            {{- partial "posts/lists/pagination" . -}}
+
+        </div>
+        <!-- Aside -->
+        <div class="col-md-4">
+            {{- partial "posts/aside" -}}
+        </div>
+    </div>
+</main>
+{{ end }}

@@ -1,5 +1,7 @@
 {
     "main_menu": "Main Menu",
     "ui_pager_prev": "Previous",
-    "ui_pager_next": "Next"
+    "ui_pager_next": "Next",
+    "ui_pager_older": "Older",
+    "ui_pager_newer": "Newer"
 }

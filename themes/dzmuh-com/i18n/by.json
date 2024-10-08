@@ -1,5 +1,7 @@
 {
     "main_menu": "Галоўнае меню",
     "ui_pager_prev": "Папярэдняя",
-    "ui_pager_next": "Наступная"
+    "ui_pager_next": "Наступная",
+    "ui_pager_older": "Старэйшыя",
+    "ui_pager_newer": "Навей"
 }

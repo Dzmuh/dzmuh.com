@@ -22,5 +22,8 @@
             "path": "[[workspace]]/content"
         }
     ],
-    "bookmarks.saveBookmarksInProject": true
+    "bookmarks.saveBookmarksInProject": true,
+    "prettier.bracketSameLine": true,
+    "prettier.tabWidth": 4,
+    "prettier.singleAttributePerLine": true
 }

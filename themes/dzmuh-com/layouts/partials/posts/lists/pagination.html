@@ -1,0 +1,8 @@
+<nav class="blog-pagination" aria-label="Pagination">
+    {{ if .Paginator.HasPrev -}}
+    <a class="btn btn-outline-primary rounded-pill" href="{{ .Paginator.Prev.URL }}">{{- i18n "ui_pager_newer" -}}</a>
+    {{ end -}}
+    {{ if .Paginator.HasNext -}}
+    <a class="btn btn-outline-secondary rounded-pill" href="{{ .Paginator.Next.URL }}">{{- i18n "ui_pager_older" -}}</a>
+    {{ end -}}
+</nav>
